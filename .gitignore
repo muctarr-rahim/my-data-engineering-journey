@@ -1,0 +1,45 @@
+# Logs and system files
+*.log
+*.out
+*.err
+.DS_Store
+Thumbs.db
+
+# Python-related
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Virtual environments
+venv/
+.env
+
+# Jupyter Notebooks
+.ipynb_checkpoints/
+
+# Data Files
+*.csv
+*.parquet
+*.json
+*.avro
+*.orc
+
+# Large compressed files
+*.gz
+*.zip
+*.tar
+*.tar.gz
+
+# Docker
+.dockerignore
+docker-compose.override.yml
+
+# Database Files
+*.db
+*.sqlite
+
+# Terraform
+.terraform/
+terraform.tfstate*
+*.tfvars
