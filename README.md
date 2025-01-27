@@ -107,3 +107,126 @@ LIMIT 1;
 **Result:**
 - JFK Airport 87.3
 ```
+
+```
+### Question 7 Terraform Workflow
+
+```sh
+gcloud auth application-default login
+```
+```sh
+export GOOGLE_APPLICATION_CREDENTIALS="path/to/service-account-key.json"
+```
+
+***Answer**
+***This file configures the backend to store the Terraform state file in a GCS bucket. backend.tf***
+
+
+
+```sh
+terraform {
+  backend "gcs" {
+    bucket = "my-terraform-state-bucket"  
+    prefix = "terraform/state"           
+  }
+}
+```
+
+***This file configures the GCP provider and specifies the project and region provider.tf***
+
+```sh
+provider "google" {
+  project = var.gcp_project  
+  region  = var.region
+}
+```
+
+***This file defines input variables for the GCP project ID and region variables.tf.***
+
+```sh
+variable "gcp_project" {
+  description = "The GCP project ID"
+  type        = string
+  default     = "my-gcp-project"  
+}
+
+variable "region" {
+  description = "The GCP region"
+  type        = string
+  default     = "us-central1"
+}
+
+variable "gcs_bucket_name" {
+  description = "The name of the GCS bucket"
+  type        = string
+  default     = "my-terraform-bucket"  
+}
+
+variable "bigquery_dataset_name" {
+  description = "The name of the BigQuery dataset"
+  type        = string
+  default     = "my_bigquery_dataset"  
+}
+```
+
+***This file defines the resources: a GCS bucket and a BigQuery dataset main.tf.***
+
+```sh
+resource "google_storage_bucket" "default" {
+  name          = var.gcs_bucket_name
+  location      = var.region
+  force_destroy = true 
+
+  labels = {
+    environment = "dev"
+  }
+}
+
+resource "google_bigquery_dataset" "default" {
+  dataset_id = var.bigquery_dataset_name
+  location   = var.region
+
+  labels = {
+    environment = "dev"
+  }
+}
+```
+
+***This file defines output values to display after applying the configuration output.tf.***
+
+```sh
+output "gcs_bucket_name" {
+  description = "The name of the created GCS bucket"
+  value       = google_storage_bucket.default.name
+}
+
+output "bigquery_dataset_name" {
+  description = "The name of the created BigQuery dataset"
+  value       = google_bigquery_dataset.default.dataset_id
+}
+```
+
+***Workflow commands***
+
+***1 Initialise:***
+```sh
+terraform init
+```
+
+***2 Plan:***
+```Sh
+terraform plan
+```
+
+***Apply:***
+```sh
+terraform apply -auto-approve
+```
+***Destroy:***
+```sh
+terraform destroy -auto-approve
+
+
+
+
+
