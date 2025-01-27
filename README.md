@@ -3,7 +3,7 @@ Collecting workspace information
 ```markdown
 # Data Engineering Journey
 
-This repository contains my homework, assignments, and projects for the Data Engineering Zoomcamp. It documents my learning journey in data engineering, covering topics like data ingestion, transformation, and pipeline orchestration.
+***This repository contains my homework, assignments, and projects for the Data Engineering Zoomcamp. It documents my learning journey in data engineering, covering topics like data ingestion, transformation, and pipeline orchestration.***
 
 ## Questions and Answers
 
@@ -14,10 +14,10 @@ This repository contains my homework, assignments, and projects for the Data Eng
 ```sh
 docker run -it --entrypoint bash python:3.12.8
 ```
-**Version:** 24.3.1
+***Version: 24.3.1***
 
 ### Question 2
-**Answer:** db:5432
+**Answer: db:5432**
 
 ### Question 3
 **Answer:**
@@ -37,7 +37,7 @@ WHERE
     AND trip_distance IS NOT NULL;  -- Ensure trip_distance is not NULL
     
 ```
-104830	198995	109642	27686	35201
+***104830	198995	109642	27686	35201***
 
 ### Question 4. Longest trip for each day
 **Answer:**
@@ -54,7 +54,7 @@ ORDER BY
 LIMIT 1;
 ```
 
-Output 2019-10-31
+***Output 2019-10-31***
 
 ### Question 5. Three biggest pickup zones
 ***Answer***
@@ -106,9 +106,7 @@ LIMIT 1;
 ```
 **Result:**
 - JFK Airport 87.3
-```
 
-```
 ### Question 7 Terraform Workflow
 
 ```sh
